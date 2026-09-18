@@ -14,6 +14,8 @@ public partial class HeroesContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<Heroes>(entity =>
         {
             entity.HasKey(e => e.Id);
@@ -22,7 +24,9 @@ public partial class HeroesContext : DbContext
         modelBuilder.Entity<SuperPoderes>(entity =>
         {
             entity.HasKey(e => e.Id);
-            entity.HasOne(d => d.Heroe).WithMany(p => p.SuperPoderes)
+
+            entity.HasOne(d => d.Heroe)
+                .WithMany(p => p.SuperPoderes)
                 .HasForeignKey(d => d.HeroeId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_SuperPoderes_Heroes");
