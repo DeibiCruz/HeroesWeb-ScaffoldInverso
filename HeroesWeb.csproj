@@ -1,9 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Disable auto-generation of assembly attributes to avoid duplicate attribute errors
+         when the build emits generated AssemblyInfo files. If you intentionally manage
+         assembly attributes elsewhere, keep this set to false. -->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!-- Also disable generation of target framework and Razor-generated assembly attributes
+         to avoid duplicate attribute errors when other generated fragments are present. -->
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <GenerateRazorAssemblyInfo>false</GenerateRazorAssemblyInfo>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +27,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.*"><PrivateAssets>all</PrivateAssets></PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.12"><PrivateAssets>all</PrivateAssets></PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="10.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="HeroesWeb\Pages\Shared\" />
   </ItemGroup>
 </Project>
 
