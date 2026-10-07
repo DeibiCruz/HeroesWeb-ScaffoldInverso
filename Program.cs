@@ -9,6 +9,8 @@ var connectionString =
     ?? throw new InvalidOperationException(
         "No se encontró la conexión HeroesDb.");
 
+builder.Services.AddControllersWithViews();
+
 builder.Services.AddRazorPages(options =>
 {
     options.Conventions.AuthorizeFolder("/Heroes");
@@ -52,6 +54,9 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action}/{id?}").WithStaticAssets();
 app.MapRazorPages()
    .WithStaticAssets();
 
